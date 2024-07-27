@@ -1,3 +1,3 @@
 # Social-Network-API
 
-MVC structure and routes adapted from mini project (activity 28)
+MVC structure, routes, connection adapted from mini project (activity 28)

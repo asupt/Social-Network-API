@@ -12,6 +12,7 @@ module.exports = {
         User.findOne({ _id: req.params.userId })
             .populate("thoughts")
             .populate("friends")
+            .then((user) => res.json(user))
             .catch((err) => res.status(500).json(err));
     },
     //post new user
@@ -27,7 +28,8 @@ module.exports = {
             { $set: req.body },
             { runValidators: true, new: true }
         )
-            .catch((err) => res.status(500).json(err));
+        .then((user) => res.json(user))
+        .catch((err) => res.status(500).json(err));
     },
     //delete user
     deleteUser(req, res) {
@@ -42,6 +44,7 @@ module.exports = {
             {$addToSet: {friends: req.params.friendId}},
             { runValidators: true, new: true }
         )
+            .then((user) => res.json(user))
             .catch((err) => res.status(500).json(err));
     },
     //delete friend
@@ -51,6 +54,7 @@ module.exports = {
             {$pull: {friends: req.params.friendId}},
             { runValidators: true, new: true }
         )
+            .then((user) => res.json(user))
             .catch((err) => res.status(500).json(err));
     }
 };
