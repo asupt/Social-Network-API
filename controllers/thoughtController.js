@@ -9,7 +9,8 @@ module.exports = {
     },
     //get thought
     getThought(req, res) {
-        Thought.findOne({ _id: req.params.userId})
+        Thought.findOne({ _id: req.params.thoughtId})
+        .then(thought => res.json(thought))
         .catch((err) => res.status(500).json(err));
     },
     //post thought
